@@ -96,7 +96,10 @@ test('failed PDF, retry, API failure and unsafe Markdown have clear safe UI', as
   await expect(page.locator('.document-item').filter({ hasText: 'blank.pdf' })).toContainText('OCR');
   const retried = page.waitForResponse(response => response.url().endsWith('/reindex') && response.request().method() === 'POST');
   await page.locator('.document-item').filter({ hasText: 'blank.pdf' }).getByRole('button', { name: '重试索引' }).click();
-  await (await retried).finished();
+  await retried;
+  // SSE responses are cancelled by the reader after their terminal event.
+  // Wait for the application's completion state, not network response.finished().
+  await expect(page.locator('input[type=file]')).toBeEnabled();
   await expect(page.locator('.document-item').filter({ hasText: 'blank.pdf' })).toContainText('失败');
   await upload(page, 'orchid.pdf'); await page.getByRole('button', { name: '新建会话' }).click();
   await page.route('**/api/chat', route => route.fulfill({ status: 502, contentType: 'application/json', body: JSON.stringify({ error: { code: 'MODEL_FAILED', message: '模型服务调用失败，请重试。' } }) }));
