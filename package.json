@@ -1,0 +1,35 @@
+{
+  "name": "docuchat",
+  "version": "1.1.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=24 <25"
+  },
+  "workspaces": [
+    "frontend",
+    "backend"
+  ],
+  "scripts": {
+    "dev": "concurrently -k -n backend,frontend \"npm run dev -w backend\" \"npm run dev -w frontend\"",
+    "build": "npm run build -w frontend",
+    "start": "npm run start -w backend",
+    "test": "node --test tests/*.test.js",
+    "test:real": "node scripts/real-smoke.js",
+    "fixtures": "node scripts/fixtures.js",
+    "test:browser": "node scripts/browser-test.js",
+    "check": "node scripts/check.js",
+    "eval": "node scripts/evaluate.js",
+    "test:browser:real": "node scripts/browser-real.js",
+    "eval:offline": "node scripts/evaluate.js --offline",
+    "fixtures:eval": "node scripts/eval-fixtures.js",
+    "backup": "node scripts/backup-data.js"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.55.1",
+    "concurrently": "8.2.2",
+    "pdfkit": "0.15.2",
+    "supertest": "7.1.3"
+  },
+  "license": "MIT"
+}

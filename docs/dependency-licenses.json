@@ -1,0 +1,159 @@
+{
+  "scope": "Direct installed dependencies; consult package license files. Dependencies are not vendored.",
+  "packages": [
+    {
+      "name": "@playwright/test",
+      "version": "1.55.1",
+      "license": "Apache-2.0",
+      "packageManifest": "node_modules/@playwright/test/package.json",
+      "licenseFiles": [
+        "LICENSE",
+        "NOTICE"
+      ]
+    },
+    {
+      "name": "concurrently",
+      "version": "8.2.2",
+      "license": "MIT",
+      "packageManifest": "node_modules/concurrently/package.json",
+      "licenseFiles": [
+        "LICENSE"
+      ]
+    },
+    {
+      "name": "pdfkit",
+      "version": "0.15.2",
+      "license": "MIT",
+      "packageManifest": "node_modules/pdfkit/package.json",
+      "licenseFiles": [
+        "LICENSE"
+      ]
+    },
+    {
+      "name": "supertest",
+      "version": "7.1.3",
+      "license": "MIT",
+      "packageManifest": "node_modules/supertest/package.json",
+      "licenseFiles": [
+        "LICENSE"
+      ]
+    },
+    {
+      "name": "@ant-design/icons",
+      "version": "5.2.6",
+      "license": "MIT",
+      "packageManifest": "node_modules/@ant-design/icons/package.json",
+      "licenseFiles": [
+        "LICENSE"
+      ]
+    },
+    {
+      "name": "antd",
+      "version": "5.8.4",
+      "license": "MIT",
+      "packageManifest": "node_modules/antd/package.json",
+      "licenseFiles": [
+        "LICENSE"
+      ]
+    },
+    {
+      "name": "react",
+      "version": "18.2.0",
+      "license": "MIT",
+      "packageManifest": "node_modules/react/package.json",
+      "licenseFiles": [
+        "LICENSE"
+      ]
+    },
+    {
+      "name": "react-dom",
+      "version": "18.2.0",
+      "license": "MIT",
+      "packageManifest": "node_modules/react-dom/package.json",
+      "licenseFiles": [
+        "LICENSE"
+      ]
+    },
+    {
+      "name": "react-markdown",
+      "version": "10.1.0",
+      "license": "MIT",
+      "packageManifest": "node_modules/react-markdown/package.json",
+      "licenseFiles": [
+        "license"
+      ]
+    },
+    {
+      "name": "remark-gfm",
+      "version": "4.0.1",
+      "license": "MIT",
+      "packageManifest": "node_modules/remark-gfm/package.json",
+      "licenseFiles": [
+        "license"
+      ]
+    },
+    {
+      "name": "vite",
+      "version": "6.4.3",
+      "license": "MIT",
+      "packageManifest": "node_modules/vite/package.json",
+      "licenseFiles": [
+        "LICENSE.md"
+      ]
+    },
+    {
+      "name": "dotenv",
+      "version": "16.3.1",
+      "license": "BSD-2-Clause",
+      "packageManifest": "node_modules/dotenv/package.json",
+      "licenseFiles": [
+        "LICENSE"
+      ]
+    },
+    {
+      "name": "express",
+      "version": "4.22.3",
+      "license": "MIT",
+      "packageManifest": "node_modules/express/package.json",
+      "licenseFiles": [
+        "LICENSE"
+      ]
+    },
+    {
+      "name": "multer",
+      "version": "2.4.0",
+      "license": "MIT",
+      "packageManifest": "node_modules/multer/package.json",
+      "licenseFiles": [
+        "LICENSE"
+      ]
+    },
+    {
+      "name": "openai",
+      "version": "7.20.0",
+      "license": "Apache-2.0",
+      "packageManifest": "backend/node_modules/openai/package.json",
+      "licenseFiles": [
+        "LICENSE"
+      ]
+    },
+    {
+      "name": "pdfjs-dist",
+      "version": "6.3.289",
+      "license": "Apache-2.0",
+      "packageManifest": "node_modules/pdfjs-dist/package.json",
+      "licenseFiles": [
+        "LICENSE"
+      ]
+    },
+    {
+      "name": "@langchain/textsplitters",
+      "version": "1.0.1",
+      "license": "MIT",
+      "packageManifest": "node_modules/@langchain/textsplitters/package.json",
+      "licenseFiles": [
+        "LICENSE"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,2 @@
+import {defineConfig} from '@playwright/test';
+export default defineConfig({testDir:'./tests/browser',outputDir:'./test-results/playwright-artifacts',timeout:60000,workers:1,use:{baseURL:'http://127.0.0.1:5174',...(process.env.CI ? {} : {channel:process.env.PLAYWRIGHT_CHANNEL || 'msedge'}),screenshot:'only-on-failure'},reporter:'list',webServer:{command:'node scripts/test-server.js',url:'http://127.0.0.1:5174/api/health',reuseExistingServer:false,timeout:30000}});
