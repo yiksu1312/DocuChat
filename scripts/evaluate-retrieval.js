@@ -8,6 +8,8 @@ import {createProvider} from '../backend/provider.js';
 import {createMockProvider} from '../backend/mock-provider.js';
 import {makePDF} from './fixtures.js';
 import {createBudget,chatCost,embeddingCost,prices} from '../eval/costs.js';
+import {assertFrozenInput} from '../eval/frozen-inputs.js';
+import baseline from '../eval/retrieval-baseline.json' with {type:'json'};
 import cases from '../eval/evidence-cases.json' with {type:'json'};
 import materials from '../eval/materials.json' with {type:'json'};
 
@@ -23,14 +25,10 @@ if(!offline&&(config.chatModel!=='gpt-4.1-mini'||config.embeddingModel!=='text-e
 const digest=value=>createHash('sha256').update(value).digest('hex');
 const snapshotFiles=['eval/evidence-cases.json','eval/materials.json','backend/pdf.js','backend/pdf-worker.js',
   'backend/memory.js','backend/provider.js','backend/citations.js','backend/evidence-check.js','backend/app.js',
-  'scripts/evaluate-retrieval.js','eval/costs.js'];
+  'scripts/evaluate-retrieval.js','eval/costs.js','eval/frozen-inputs.js','eval/retrieval-baseline.json'];
 const hashes=Object.fromEntries(await Promise.all(snapshotFiles.map(async file=>[file,digest(await readFile(file))])));
-const previous=JSON.parse(await readFile('docs/evaluation/evidence-run.json','utf8'));
-for(const file of ['eval/evidence-cases.json','eval/materials.json','backend/pdf.js','backend/pdf-worker.js','backend/provider.js','backend/citations.js']){
-  // Git may convert working-tree line endings; compare canonical bytes against the historical file hash below.
-  const bytes=await readFile(file,'utf8');
-  const variants=[digest(bytes),digest(bytes.replace(/\r\n/g,'\n')),digest(bytes.replace(/\r?\n/g,'\r\n'))];
-  if(!variants.includes(previous.hashes[file]))throw new Error('FROZEN_INPUT_CHANGED: '+file);
+for(const [file,expectedHash] of Object.entries(baseline.hashes)){
+  assertFrozenInput(file,await readFile(file,'utf8'),expectedHash);
 }
 const root=path.resolve('test-results/retrieval-evaluation');await mkdir(root,{recursive:true});
 const dataDir=await mkdtemp(path.join(root,'run-'));
@@ -70,7 +68,7 @@ const sum=items=>items.reduce((total,l)=>l.estimatedUsd===null||total===null?nul
 async function save(){
   await writeFile(target,JSON.stringify({date:new Date().toISOString(),mode:offline?'mock-harness-only':'real-openai',
     design:'Fresh paired HTTP requests, vector versus adjacent retrieval. Same parsed PDFs/indexes, separate empty sessions, alternating arm order. Both evidence checks OFF. No generation replay.',
-    baselineCommit:'fca628afef63856f53ecac60e0c8a94f33ea9abd',hashes,
+    baselineCommit:baseline.commit,hashes,
     models:{chat:config.chatModel,embedding:config.embeddingModel},
     settings:{temperature:0,generationMaxOutputTokens:900,evidenceCheck:false,retries:0,perRequestTimeoutMs:120000,budgetUsd:limit},
     prices,committedBudgetUsd:budget.committedUsd,fatal,documents,ledger,rows,

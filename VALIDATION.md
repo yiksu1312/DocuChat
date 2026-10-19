@@ -4,7 +4,7 @@
 
 One retrieval mechanism adds bounded neighboring-page chunks while preserving the original hits. The same frozen 28 cases were rerun with fresh paired requests and evidence checks disabled in both arms. Text-answer correctness rose from 23/27 to 25/27; all-case task pass rose from 23/28 to 25/28. Both known missing-page failures were recovered; no correctness regressions appeared in this single run. Mean time was 1.377s → 1.358s, P95 1.651s → 1.881s, question cost $0.0091461 → $0.0090129. Total actual API usage was estimated at $0.01817594 including both arms and shared indexing. These are assistant-reviewed synthetic results, not independent human validation or a general speed/cost improvement claim. See [the controlled report](RETRIEVAL_EVALUATION.md).
 
-53 automated tests, 5 browser workflows, syntax, production build, the original offline suite and both 28-case offline evaluation harnesses passed. The new four retrieval tests cover preserved source IDs, missing pages, same-document scope, one-hop expansion, per-page selection and the 40-chunk cap. No generation prompt, parser or citation-validation change was made.
+55 automated tests, 5 browser workflows, syntax, production build, the original offline suite and both 28-case offline evaluation harnesses passed. Four retrieval tests cover preserved source IDs, missing pages, same-document scope, one-hop expansion, per-page selection and the 40-chunk cap. Two additional tests protect frozen inputs while allowing Git newline normalization; this fixes a mixed-newline hash mismatch found on the first Linux CI run. No generation prompt, parser, citation-validation change or paid-output rewrite was made.
 
 ## Evidence evaluation — 2026-10-18
 

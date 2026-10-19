@@ -1,0 +1,12 @@
+{
+  "commit": "fca628afef63856f53ecac60e0c8a94f33ea9abd",
+  "normalization": "UTF-8 text, CRLF normalized to LF; all other bytes retained",
+  "hashes": {
+    "eval/evidence-cases.json": "408b6fd17b10c6d75b9fa64c515fe55fb8a5bc6b1f15e2c6e1e9fc807640dc4c",
+    "eval/materials.json": "cd76621dd608d566d874529ede798bb1cadb35f722299027b2bd2c2a2ee9df90",
+    "backend/pdf.js": "c0908a6c5b9e636dec384ff558ebbea557dace2968771914d4badbeb210004e5",
+    "backend/pdf-worker.js": "f77dff50fdae34368c6c5e2aca1a4235c4ed59d5ded426cdc446fa182aabf6ab",
+    "backend/provider.js": "99b570f9f1e6bf31316b55e7b9f96ce738ac89950ea384dba8a4e69e5ac4b9d1",
+    "backend/citations.js": "404775c69abf0770f7e9c0233545362fc43edb6cc1b3de910d9ca6d2de8b6ea4"
+  }
+}
