@@ -1,0 +1,106 @@
+{
+  "date": "2026-10-19T01:19:23.368Z",
+  "reviewer": "Codex assistant review; not an independent human assessment",
+  "before": {
+    "contentCorrect": {
+      "passed": 22,
+      "total": 27
+    },
+    "taskPass": {
+      "passed": 21,
+      "total": 27
+    },
+    "allCasesTaskPass": {
+      "passed": 22,
+      "total": 28
+    },
+    "citationSupport": {
+      "passed": 16,
+      "total": 19
+    },
+    "answered": 19,
+    "noAnswerRefusal": {
+      "passed": 7,
+      "total": 8
+    },
+    "answerableRefusals": {
+      "passed": 1,
+      "total": 19
+    },
+    "latency": {
+      "meanMs": 1338.2222222222222,
+      "medianMs": 1205,
+      "p95Ms": 2619
+    },
+    "questionCostUsd": 0.009154100000000002
+  },
+  "after": {
+    "contentCorrect": {
+      "passed": 22,
+      "total": 27
+    },
+    "taskPass": {
+      "passed": 21,
+      "total": 27
+    },
+    "allCasesTaskPass": {
+      "passed": 22,
+      "total": 28
+    },
+    "citationSupport": {
+      "passed": 16,
+      "total": 18
+    },
+    "answered": 18,
+    "noAnswerRefusal": {
+      "passed": 7,
+      "total": 8
+    },
+    "answerableRefusals": {
+      "passed": 2,
+      "total": 19
+    },
+    "latency": {
+      "meanMs": 2294,
+      "medianMs": 2384,
+      "p95Ms": 4531
+    },
+    "questionCostUsd": 0.016583700000000003
+  },
+  "additionalCheckCalls": 19,
+  "additionalCheckUsd": 0.007429600000000001,
+  "sharedIndexingUsd": 0.00001694,
+  "actualEstimatedTotalUsd": 0.016600640000000007,
+  "parsedEvidenceAnchors": {
+    "passed": 27,
+    "total": 27
+  },
+  "retrievedEvidenceAnchors": {
+    "passed": 25,
+    "total": 27
+  },
+  "failureStages": {
+    "parsing": [],
+    "retrieval": [
+      "E11",
+      "E12"
+    ],
+    "generation": [
+      "E05",
+      "E09",
+      "E11",
+      "E12",
+      "E23"
+    ],
+    "citation": [
+      "E05",
+      "E11",
+      "E13",
+      "E23"
+    ],
+    "verification": [
+      "E05",
+      "E23"
+    ]
+  }
+}

@@ -92,11 +92,17 @@ React / Ant Design 界面连接仅监听本机的 Express API。PDF.js 在 worke
 
 **引句匹配不等于每个结论都得到支持。** 对准确性有要求时，请核查原文。近期对话只用于理解上下文，不作为证据。架构图见 [English README](README.md#how-it-works)。
 
+### 有数据可复核的证据检查
+
+可选的生成后检查会逐条判断引句是否支持答案。设置 `EVIDENCE_CHECK=true` 后，候选答案先完成检查再显示；不支持或不确定时拒答。每个原本可显示的答案增加一次模型调用，不额外检索或重写答案。
+
+本次 **27道文本问答加1道解析边界题** 的配对评估中，内容正确且完整仍为 **22/27**，平均完成时间从 **1.34秒增至2.29秒**。由于没有观察到正确性提升，该机制**默认关闭**。完整[流程图、失败分类与复现记录](EVIDENCE_EVALUATION.md)包含跨页、无答案和双语问题；评分为助手逐题复核，尚未经过独立人工评审。
+
 ## 隐私与数据
 
 | 保存在本机 | 真实模式下发送至 OpenAI |
 | --- | --- |
-| 原始 PDF、SQLite 数据库、聊天记录和索引 | 用于向量化的文档分块与检索查询；用于回答的问题、有限历史、来源名称及检索片段 |
+| 原始 PDF、SQLite 数据库、聊天记录和索引 | 用于向量化的文档分块与检索查询；用于回答的问题、有限历史、来源名称及检索片段；启用证据检查时还发送问题、候选答案及所选引句 |
 
 PDF 在本地解析。真实模式**不是完全离线**；Mock 模式不调用 AI 服务。
 
@@ -118,6 +124,7 @@ PDF 在本地解析。真实模式**不是完全离线**；Mock 模式不调用 
 | `MODEL_TIMEOUT_MS` | `60000` | 索引与问答截止时间 |
 | `MODEL_MAX_RETRIES` | `1` | SDK 最大重试次数 |
 | `MOCK_AI` | `false` | 显式离线演示模式 |
+| `EVIDENCE_CHECK` | `false` | 真实模式的实验性证据检查；先缓冲回答，会增加API费用 |
 
 修改 `PORT` 时，启动前端需将 `BACKEND_PORT` 设为相同值。真实与 Mock 数据目录应分开；向量模型或分块配置变化后需显式重建索引，可能产生 API 费用。
 
@@ -129,6 +136,7 @@ npm run check            # JavaScript 语法检查
 npm run build            # 前端生产构建
 npm run test:browser     # 浏览器流程与双语界面
 npm run eval:offline     # 确定性的检索与流程检查
+npm run eval:evidence:offline # 28题配对评估流程验证
 ```
 
 本地浏览器测试默认使用 Microsoft Edge。也可执行 `npx playwright install chromium`，并在运行测试时设置 `CI=1` 使用 Chromium。GitHub Actions 使用 Chromium。
@@ -144,7 +152,7 @@ npm run eval:offline     # 确定性的检索与流程检查
 
 ## 项目文档
 
-[API](API.md) · [存储与备份](STORAGE.md) · [设计取舍](DESIGN.md) · [五分钟体验](ACCEPTANCE.md) · [贡献指南](CONTRIBUTING.md) · [安全说明](SECURITY.md)
+[证据评估](EVIDENCE_EVALUATION.md) · [API](API.md) · [存储与备份](STORAGE.md) · [设计取舍](DESIGN.md) · [五分钟体验](ACCEPTANCE.md) · [贡献指南](CONTRIBUTING.md) · [安全说明](SECURITY.md)
 
 ## 许可证
 

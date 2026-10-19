@@ -7,6 +7,7 @@ import { createMockProvider } from './mock-provider.js';
 import { parsePDF } from './pdf.js';
 import { makeIndex, retrieveMany } from './memory.js';
 import { validateAnswer } from './citations.js';
+import { checkEvidence } from './evidence-check.js';
 import { AppError, publicError, bounded } from './errors.js';
 import { logEvent } from './telemetry.js';
 import { Store, contentHash, SPLIT_CONFIG } from './storage.js';
@@ -70,6 +71,7 @@ export function createApp(config, provider = config.mock ? createMockProvider() 
     status: 'ok', product: 'DocuChat', instanceId, mode: provider.mode, configured: config.mock || Boolean(config.apiKey),
     documents: store.documents().filter(d => d.status === 'ready').length, storageVersion: 1,
     models: { chat: config.chatModel, embedding: config.embeddingModel },
+    evidenceCheck: Boolean(config.evidenceCheck),
   }));
   app.get('/api/documents', (_req, res) => res.json({ documents: store.documents() }));
   app.get('/api/documents/:id/file', route(async (req, res) => {
@@ -211,15 +213,25 @@ export function createApp(config, provider = config.mock ? createMockProvider() 
       ctx.emit('stage', { stage: 'generating', message: '正在生成回答；历史内容不作为证据' });
       const response = await bounded(() => provider.generate(question, retrieved, ctx.signal, delta => {
         if (ctx.signal.aborted) return;
-        if (firstTokenMs === null) firstTokenMs = Math.round(performance.now() - start);
-        text += delta;
-        ctx.emit('delta', { text: delta, sessionId, documentIds: scope });
+        if (!config.evidenceCheck) {
+          if (firstTokenMs === null) firstTokenMs = Math.round(performance.now() - start);
+          text += delta;
+          ctx.emit('delta', { text: delta, sessionId, documentIds: scope });
+        }
       }, history), ctx.signal);
       ctx.signal.throwIfAborted();
       if (store.session(sessionId)?.revision !== session.revision) throw new DOMException('Cancelled', 'AbortError');
       store.validateSources(retrieved, scope);
-      const answer = validateAnswer(response.result, retrieved, question);
-      const metrics = { durationMs: Math.round(performance.now() - start), firstTokenMs, retrievalMs, embeddingTokens, ...(response.usage || {}) };
+      const candidate = validateAnswer(response.result, retrieved, question);
+      if (config.evidenceCheck && candidate.supported) ctx.emit('stage', { stage: 'checkingEvidence' });
+      const checked = await checkEvidence(candidate, question, provider, ctx.signal, config.evidenceCheck);
+      ctx.signal.throwIfAborted();
+      if (store.session(sessionId)?.revision !== session.revision) throw new DOMException('Cancelled', 'AbortError');
+      store.validateSources(retrieved, scope);
+      const answer = checked.answer;
+      if (config.evidenceCheck) firstTokenMs = Math.round(performance.now() - start);
+      const metrics = { durationMs: Math.round(performance.now() - start), firstTokenMs, retrievalMs, embeddingTokens, ...(response.usage || {}),
+        evidenceCheckMs: checked.durationMs, evidenceCheckUsage: checked.usage };
       const result = { requestId, sessionId, documentIds: scope, ...answer, retrieved, metrics, mode: provider.mode };
       store.finishMessage(id, 'done', result);
       logger({ event: 'chat_complete', requestId, sessionId, documentIds: scope, mode: provider.mode, model: config.chatModel,

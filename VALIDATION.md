@@ -1,5 +1,11 @@
 # Validation
 
+## Evidence evaluation — 2026-10-18
+
+Added one optional post-generation evidence gate, off by default. 49 automated tests and 5 browser workflows pass; syntax, production build and the 28-case offline harness pass. A real paid paired run used 27 text questions plus one parser boundary case. Content correctness remained 22/27, average completion time increased from 1.34s to 2.29s, and total estimated API spend was $0.01660064. The report preserves failures, per-call usage and assistant-reviewed labels; it is not independent human validation. See [the evaluation report](EVIDENCE_EVALUATION.md).
+
+## Publication checks — 2026-10-14
+
 Review date: 2026-10-14 (America/Los_Angeles). Runtime: Node.js 24.12.0 / npm 11.6.2 on Windows.
 
 | Check | Result | Scope |
@@ -16,6 +22,6 @@ Updated shell-quote and source-map-js within the existing dependency constraints
 
 Known nonblocking warnings: Node's experimental SQLite API; Ant Design use-client directives ignored by Vite; the main JS bundle exceeds Vite's 500 kB advisory threshold. The installation reports deprecated transitive jpeg-exif and crypto-js packages. These remain maintenance items.
 
-No paid model calls were made. Real-model language adherence, semantic retrieval quality, answer correctness, refusal behavior, load testing, and a full security audit are outside the verified results. No test run proves that software has no defects.
+No paid model calls were made in the October 14 publication checks. Real-model quality was not measured in those checks; the separate October 18 study above provides a small synthetic evaluation. Load testing and a full security audit remain outside the verified results. No test run proves that software has no defects.
 
 Public screenshots use fictional documents in clearly labeled mock mode. Release artifacts exclude credentials, user data, local logs, and old diagnostic results. Pattern-based privacy scans have limitations and must not be treated as a guarantee.
