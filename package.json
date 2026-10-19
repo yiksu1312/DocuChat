@@ -25,7 +25,9 @@
     "fixtures:eval": "node scripts/eval-fixtures.js",
     "backup": "node scripts/backup-data.js",
     "eval:evidence": "node scripts/evaluate-evidence.js",
-    "eval:evidence:offline": "node scripts/evaluate-evidence.js --offline"
+    "eval:evidence:offline": "node scripts/evaluate-evidence.js --offline",
+    "eval:retrieval": "node scripts/evaluate-retrieval.js",
+    "eval:retrieval:offline": "node scripts/evaluate-retrieval.js --offline"
   },
   "devDependencies": {
     "@playwright/test": "1.55.1",

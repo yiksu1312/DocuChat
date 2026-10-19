@@ -4,7 +4,7 @@
 
 | 方法 | 路径 | 请求/返回 |
 |---|---|---|
-| GET | /api/health | status/product/instanceId/mode/configured/storageVersion/documents/models/evidenceCheck |
+| GET | /api/health | status/product/instanceId/mode/configured/storageVersion/documents/models/evidenceCheck/retrievalMode |
 | GET | /api/documents | {documents:[文档元数据]}，不返回已删除记录 |
 | POST | /api/upload | multipart唯一file；新建JSON201，复用JSON200；也支持SSE |
 | POST | /api/documents/:id/reindex | 从已保存PDF重新解析/embedding；也支持SSE；真实模式会计费 |
@@ -20,6 +20,8 @@
 | POST | /api/chat | {sessionId,documentIds:[...],question}；必须使用已创建会话 |
 
 chat保留单文档documentId字段兼容入口；优先使用documentIds。范围为1–20个不重复ID，后端验证存在、ready及索引兼容。question为1–2000字符。请求开始时保存范围快照，后续切换不会改变本次范围。多个会话可有独立记录；同一会话生成中返回CHAT_BUSY。
+
+`RETRIEVAL_MODE` 是后端启动配置，默认 `adjacent`；`vector` 保留原检索。相邻页扩展保持原有片段及S编号，再以最相关的2个原始命中为起点，追加同文档前后相邻物理页的最佳片段，最多4段，总计不超过40段。不递归、不越出所选文档，也不增加模型调用或重建索引。`/api/health` 返回当前 `retrievalMode`；不接受客户端逐请求覆盖。
 
 文档包含documentId/name/hash/status/compatible/needsReindex/error/pages/emptyPages/chunks/embeddingModel/dimension/splitConfig/revision/createdAt/updatedAt/mode。状态processing/ready/failed；删除中断可出现deleting供再次删除。ready但配置不兼容的文档不可选择。
 

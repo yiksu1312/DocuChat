@@ -96,7 +96,9 @@ flowchart LR
     Embed --> Store[(Local SQLite)]
     Q[Question + selected documents] --> Search[Scoped vector retrieval]
     Store --> Search
-    Search --> Model[OpenAI streamed answer]
+    Search --> Neighbors[Bounded adjacent-page expansion]
+    Store --> Neighbors
+    Neighbors --> Model[OpenAI streamed answer]
     Model --> Check[Reference ID + quote validation]
     Check --> UI[Answer + original PDF pages]
 ```
@@ -105,11 +107,13 @@ React / Ant Design connects to a loopback-only Express API. PDF.js extracts text
 
 **A matching quotation does not prove that every claim is supported.** Inspect the source when accuracy matters. Recent conversation is context, not evidence.
 
-### Measured evidence checks
+### Measured retrieval and evidence checks
+
+**Latest retrieval experiment:** bounded adjacent-page expansion recovered both missing-page answers in the same 28-case suite. Fresh text-question correctness rose from **23/27 to 25/27**, with mean completion time **1.38s → 1.36s** and estimated question cost **$0.00915 → $0.00901**. These small time/cost differences are not a performance guarantee; P95 latency increased. [Read the controlled comparison and remaining failures](RETRIEVAL_EVALUATION.md). `RETRIEVAL_MODE=adjacent` is the default; use `vector` to reproduce the original retrieval. No reindexing or additional model calls are needed.
 
 An optional post-generation check asks whether the quoted evidence supports each claim. With `EVIDENCE_CHECK=true`, the candidate is held until verification finishes; unsupported or uncertain results are withheld. This adds one model call for each otherwise valid answer. It does not retrieve more evidence or repair answers.
 
-In a paired evaluation of **27 text questions plus one parser boundary case**, content correctness stayed at **22/27**; average completion time rose from **1.34s to 2.29s**. The check is **off by default** because this run did not demonstrate an accuracy gain. See the [flow diagrams, failure analysis and reproducible results](EVIDENCE_EVALUATION.md), including bilingual and cross-page questions. Scores are assistant-reviewed, not independently human-validated.
+In the earlier evaluation on original vector retrieval, **27 text questions plus one parser boundary case** yielded unchanged content correctness of **22/27**; average completion time rose from **1.34s to 2.29s**. The check remains **off by default** because that run did not demonstrate an accuracy gain, and was disabled in both arms of the latest retrieval experiment. See the [historical flow diagrams, failure analysis and reproducible results](EVIDENCE_EVALUATION.md). Both studies are assistant-reviewed, not independently human-validated.
 
 ## Privacy and data
 
@@ -138,6 +142,7 @@ Process environment variables override `backend/.env`. Blank optional values use
 | `MODEL_MAX_RETRIES` | `1` | Maximum SDK retries |
 | `MOCK_AI` | `false` | Explicit offline demo |
 | `EVIDENCE_CHECK` | `false` | Experimental evidence support gate in real mode; buffers answers and adds API cost |
+| `RETRIEVAL_MODE` | `adjacent` | Append bounded neighboring-page evidence; `vector` restores original retrieval |
 
 If you change `PORT`, set `BACKEND_PORT` to the same value when starting the frontend. Keep mock and real data separate. Changing embedding or split settings requires explicit reindexing and may incur API charges.
 
@@ -150,6 +155,7 @@ npm run build            # Production frontend build
 npm run test:browser     # Browser workflows and bilingual UI
 npm run eval:offline     # Deterministic retrieval and pipeline checks
 npm run eval:evidence:offline # Validate the 28-case paired evaluation harness
+npm run eval:retrieval:offline # Validate the same 28-case retrieval comparison
 ```
 
 Local browser tests use Microsoft Edge by default. For bundled Chromium, run `npx playwright install chromium` and set `CI=1` for the test command. GitHub Actions uses Chromium.
@@ -175,7 +181,7 @@ docs/        Screenshots and release manifest
 
 ## Documentation
 
-[Evidence evaluation](EVIDENCE_EVALUATION.md) · [API](API.md) · [Storage & backup](STORAGE.md) · [Design decisions](DESIGN.md) · [Five-minute walkthrough](ACCEPTANCE.md) · [Contributing](CONTRIBUTING.md) · [Security](SECURITY.md)
+[Retrieval evaluation](RETRIEVAL_EVALUATION.md) · [Evidence evaluation](EVIDENCE_EVALUATION.md) · [API](API.md) · [Storage & backup](STORAGE.md) · [Design decisions](DESIGN.md) · [Five-minute walkthrough](ACCEPTANCE.md) · [Contributing](CONTRIBUTING.md) · [Security](SECURITY.md)
 
 ## License
 
