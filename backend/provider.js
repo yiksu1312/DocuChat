@@ -1,6 +1,9 @@
 import OpenAI from 'openai';
 import { AppError } from './errors.js';
 import { partialAnswer } from './citations.js';
+import { evidenceSchema, evidencePrompt } from './evidence-check.js';
+const tokenUsage = usage => usage ? {inputTokens:usage.prompt_tokens, cachedInputTokens:usage.prompt_tokens_details?.cached_tokens??0,
+ outputTokens:usage.completion_tokens,totalTokens:usage.total_tokens} : null;
 const schema={type:'object',properties:{
  answer:{type:'string'},supported:{type:'boolean'},
  citations:{type:'array',items:{type:'object',properties:{id:{type:'string'},quote:{type:'string'}},required:['id','quote'],additionalProperties:false}}
@@ -28,7 +31,7 @@ export function createProvider(config) {
    let json='',shown='',usage=null,finished=null;
    try {
     for await(const chunk of stream){
-     if(chunk.usage)usage={inputTokens:chunk.usage.prompt_tokens,outputTokens:chunk.usage.completion_tokens,totalTokens:chunk.usage.total_tokens};
+     if(chunk.usage)usage=tokenUsage(chunk.usage);
      if(chunk.choices[0]?.finish_reason)finished=chunk.choices[0].finish_reason;
      json+=chunk.choices[0]?.delta?.content||'';
      const text=partialAnswer(json);
@@ -38,6 +41,19 @@ export function createProvider(config) {
    if(finished!=='stop')throw new AppError(502,'MODEL_INCOMPLETE','模型输出未完成，请重试。');
    let result;try{result=JSON.parse(json);}catch{throw new AppError(502,'MODEL_FORMAT','模型响应格式错误，请重试。');}
    return {result,usage};
+  },
+  async verifyEvidence(question,answer,signal){
+   const response=await ready().chat.completions.create({
+    model:config.chatModel,temperature:0,max_completion_tokens:1600,
+    response_format:{type:'json_schema',json_schema:{name:'evidence_audit',strict:true,schema:evidenceSchema}},
+    messages:[{role:'system',content:evidencePrompt},{role:'user',content:JSON.stringify({question,answer:answer.answer,
+     citations:answer.citations.map(({id,quote,name})=>({id,quote,name}))})}]
+   },{signal});
+   let result=null;
+   if(response.choices[0]?.finish_reason==='stop'){
+    try{result=JSON.parse(response.choices[0].message.content);}catch{/* Invalid audits fail closed. */}
+   }
+   return {result,usage:tokenUsage(response.usage)};
   }
  };
 }

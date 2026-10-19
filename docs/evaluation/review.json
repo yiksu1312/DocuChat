@@ -1,0 +1,306 @@
+{
+  "rawSha256": "32268dad2cd5d037191948362d9ee6a5068135e45174f11b348d76f28f81f4bd",
+  "reviewer": "Codex assistant review; not an independent human assessment",
+  "methodology": "Reviewed the frozen gold answers, full synthetic source pages, retrieved chunks, candidate answers and quoted evidence. Checker verdicts were not used as correctness labels. This review was not blinded. Boolean answerCorrect requires a correct AND complete response or an appropriate abstention against the full selected documents. Language compliance is scored separately. Null citation support means no delivered factual answer; it is excluded, not counted as success.",
+  "decisions": [
+    {
+      "id": "E01",
+      "answerCorrectBefore": true,
+      "answerCorrectAfter": true,
+      "languageCompliant": true,
+      "citationsSupportBefore": true,
+      "citationsSupportAfter": true,
+      "failureStages": [],
+      "notes": "答案符合预先固定的参考标准，所述事实有原文依据。"
+    },
+    {
+      "id": "E02",
+      "answerCorrectBefore": true,
+      "answerCorrectAfter": true,
+      "languageCompliant": true,
+      "citationsSupportBefore": true,
+      "citationsSupportAfter": true,
+      "failureStages": [],
+      "notes": "答案符合预先固定的参考标准，所述事实有原文依据。"
+    },
+    {
+      "id": "E03",
+      "answerCorrectBefore": true,
+      "answerCorrectAfter": true,
+      "languageCompliant": true,
+      "citationsSupportBefore": true,
+      "citationsSupportAfter": true,
+      "failureStages": [],
+      "notes": "答案符合预先固定的参考标准，所述事实有原文依据。"
+    },
+    {
+      "id": "E04",
+      "answerCorrectBefore": true,
+      "answerCorrectAfter": true,
+      "languageCompliant": true,
+      "citationsSupportBefore": true,
+      "citationsSupportAfter": true,
+      "failureStages": [],
+      "notes": "答案符合预先固定的参考标准，所述事实有原文依据。"
+    },
+    {
+      "id": "E05",
+      "answerCorrectBefore": false,
+      "answerCorrectAfter": false,
+      "languageCompliant": true,
+      "citationsSupportBefore": false,
+      "citationsSupportAfter": false,
+      "failureStages": [
+        "generation",
+        "citation",
+        "verification"
+      ],
+      "notes": "两份温度证据都已检索，但模型自行宣布原手册18°C优先。引文没有给出优先级，检查器仍将这一推理判为支持。"
+    },
+    {
+      "id": "E06",
+      "answerCorrectBefore": true,
+      "answerCorrectAfter": true,
+      "languageCompliant": true,
+      "citationsSupportBefore": true,
+      "citationsSupportAfter": true,
+      "failureStages": [],
+      "notes": "答案符合预先固定的参考标准，所述事实有原文依据。"
+    },
+    {
+      "id": "E07",
+      "answerCorrectBefore": true,
+      "answerCorrectAfter": true,
+      "languageCompliant": true,
+      "citationsSupportBefore": true,
+      "citationsSupportAfter": true,
+      "failureStages": [],
+      "notes": "答案符合预先固定的参考标准，所述事实有原文依据。"
+    },
+    {
+      "id": "E08",
+      "answerCorrectBefore": true,
+      "answerCorrectAfter": true,
+      "languageCompliant": true,
+      "citationsSupportBefore": true,
+      "citationsSupportAfter": true,
+      "failureStages": [],
+      "notes": "答案符合预先固定的参考标准，所述事实有原文依据。"
+    },
+    {
+      "id": "E09",
+      "answerCorrectBefore": true,
+      "answerCorrectAfter": true,
+      "languageCompliant": false,
+      "citationsSupportBefore": true,
+      "citationsSupportAfter": true,
+      "failureStages": [
+        "generation"
+      ],
+      "notes": "9天与18个月的事实和引文都正确，但中文问题得到英文回答；证据检查不负责语言合规，未改变结果。"
+    },
+    {
+      "id": "E10",
+      "answerCorrectBefore": true,
+      "answerCorrectAfter": true,
+      "languageCompliant": true,
+      "citationsSupportBefore": true,
+      "citationsSupportAfter": true,
+      "failureStages": [],
+      "notes": "答案符合预先固定的参考标准，所述事实有原文依据。"
+    },
+    {
+      "id": "E11",
+      "answerCorrectBefore": false,
+      "answerCorrectAfter": false,
+      "languageCompliant": true,
+      "citationsSupportBefore": false,
+      "citationsSupportAfter": null,
+      "failureStages": [
+        "retrieval",
+        "generation",
+        "citation"
+      ],
+      "notes": "PDF第4页的CW-8842已解析但未进入前8个检索片段。基线回答未给零件号，并用第3页引文断言未明确给出编号。检查后拒答；这是安全退让，仍未完成本可回答的问题。检查器总体为unsupported但各子结论均为supported，审计本身不一致，不能视作可靠推理成功。"
+    },
+    {
+      "id": "E12",
+      "answerCorrectBefore": false,
+      "answerCorrectAfter": false,
+      "languageCompliant": true,
+      "citationsSupportBefore": true,
+      "citationsSupportAfter": true,
+      "failureStages": [
+        "retrieval",
+        "generation"
+      ],
+      "notes": "中文跨页题也漏检第4页，仅回答垫片和供应商，没有CW-8842。引文可支撑已说出的局部信息，但答案不完整；检查通过不代表回答了问题。"
+    },
+    {
+      "id": "E13",
+      "answerCorrectBefore": false,
+      "answerCorrectAfter": false,
+      "languageCompliant": true,
+      "citationsSupportBefore": null,
+      "citationsSupportAfter": null,
+      "failureStages": [
+        "citation"
+      ],
+      "notes": "第2页已正确解析并检索；候选事实正确，但引句写入字面反斜杠换行转义，与原文不匹配。原有引用校验拒答，新增检查跳过。问题在引用生成/格式，不是解析或检索。"
+    },
+    {
+      "id": "E14",
+      "answerCorrectBefore": true,
+      "answerCorrectAfter": true,
+      "languageCompliant": true,
+      "citationsSupportBefore": true,
+      "citationsSupportAfter": true,
+      "failureStages": [],
+      "notes": "答案符合预先固定的参考标准，所述事实有原文依据。"
+    },
+    {
+      "id": "E15",
+      "answerCorrectBefore": true,
+      "answerCorrectAfter": true,
+      "languageCompliant": true,
+      "citationsSupportBefore": null,
+      "citationsSupportAfter": null,
+      "failureStages": [],
+      "notes": "原文没有充分答案，拒答正确；没有调用证据检查。"
+    },
+    {
+      "id": "E16",
+      "answerCorrectBefore": true,
+      "answerCorrectAfter": true,
+      "languageCompliant": true,
+      "citationsSupportBefore": null,
+      "citationsSupportAfter": null,
+      "failureStages": [],
+      "notes": "原文没有充分答案，拒答正确；没有调用证据检查。"
+    },
+    {
+      "id": "E17",
+      "answerCorrectBefore": true,
+      "answerCorrectAfter": true,
+      "languageCompliant": true,
+      "citationsSupportBefore": null,
+      "citationsSupportAfter": null,
+      "failureStages": [],
+      "notes": "原文没有充分答案，拒答正确；没有调用证据检查。"
+    },
+    {
+      "id": "E18",
+      "answerCorrectBefore": true,
+      "answerCorrectAfter": true,
+      "languageCompliant": true,
+      "citationsSupportBefore": null,
+      "citationsSupportAfter": null,
+      "failureStages": [],
+      "notes": "原文没有充分答案，拒答正确；没有调用证据检查。"
+    },
+    {
+      "id": "E19",
+      "answerCorrectBefore": true,
+      "answerCorrectAfter": true,
+      "languageCompliant": true,
+      "citationsSupportBefore": null,
+      "citationsSupportAfter": null,
+      "failureStages": [],
+      "notes": "原文没有充分答案，拒答正确；没有调用证据检查。"
+    },
+    {
+      "id": "E20",
+      "answerCorrectBefore": true,
+      "answerCorrectAfter": true,
+      "languageCompliant": true,
+      "citationsSupportBefore": true,
+      "citationsSupportAfter": true,
+      "failureStages": [],
+      "notes": "答案符合预先固定的参考标准，所述事实有原文依据。"
+    },
+    {
+      "id": "E21",
+      "answerCorrectBefore": true,
+      "answerCorrectAfter": true,
+      "languageCompliant": true,
+      "citationsSupportBefore": null,
+      "citationsSupportAfter": null,
+      "failureStages": [],
+      "notes": "原文没有充分答案，拒答正确；没有调用证据检查。"
+    },
+    {
+      "id": "E22",
+      "answerCorrectBefore": true,
+      "answerCorrectAfter": true,
+      "languageCompliant": true,
+      "citationsSupportBefore": true,
+      "citationsSupportAfter": true,
+      "failureStages": [],
+      "notes": "答案符合预先固定的参考标准，所述事实有原文依据。"
+    },
+    {
+      "id": "E23",
+      "answerCorrectBefore": false,
+      "answerCorrectAfter": false,
+      "languageCompliant": true,
+      "citationsSupportBefore": false,
+      "citationsSupportAfter": false,
+      "failureStages": [
+        "generation",
+        "citation",
+        "verification"
+      ],
+      "notes": "原文只说项目容量37升和有6个箱子，没有每箱37升。模型接受错误前提算出222升，并说手册规定该总量；检查器也把项目容量误当作每箱容量。"
+    },
+    {
+      "id": "E24",
+      "answerCorrectBefore": true,
+      "answerCorrectAfter": true,
+      "languageCompliant": true,
+      "citationsSupportBefore": true,
+      "citationsSupportAfter": true,
+      "failureStages": [],
+      "notes": "答案符合预先固定的参考标准，所述事实有原文依据。"
+    },
+    {
+      "id": "E25",
+      "answerCorrectBefore": true,
+      "answerCorrectAfter": true,
+      "languageCompliant": true,
+      "citationsSupportBefore": true,
+      "citationsSupportAfter": true,
+      "failureStages": [],
+      "notes": "答案符合预先固定的参考标准，所述事实有原文依据。"
+    },
+    {
+      "id": "E26",
+      "answerCorrectBefore": true,
+      "answerCorrectAfter": true,
+      "languageCompliant": true,
+      "citationsSupportBefore": null,
+      "citationsSupportAfter": null,
+      "failureStages": [],
+      "notes": "原文没有充分答案，拒答正确；没有调用证据检查。"
+    },
+    {
+      "id": "E27",
+      "answerCorrectBefore": true,
+      "answerCorrectAfter": true,
+      "languageCompliant": true,
+      "citationsSupportBefore": true,
+      "citationsSupportAfter": true,
+      "failureStages": [],
+      "notes": "答案符合预先固定的参考标准，所述事实有原文依据。"
+    },
+    {
+      "id": "E28",
+      "answerCorrectBefore": true,
+      "answerCorrectAfter": true,
+      "languageCompliant": true,
+      "citationsSupportBefore": null,
+      "citationsSupportAfter": null,
+      "failureStages": [],
+      "notes": "空白PDF返回PDF_NO_TEXT；在解析阶段停止，无检索、生成或检查调用。这是预期拦截，不计为解析器缺陷。"
+    }
+  ]
+}

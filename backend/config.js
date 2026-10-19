@@ -16,4 +16,5 @@ export const config = Object.freeze({
  retries: integer('MODEL_MAX_RETRIES', 1, 0, 1),
  port: integer('PORT', 5001, 1024, 65535),
  mock: process.env.MOCK_AI === 'true',
+ evidenceCheck: process.env.EVIDENCE_CHECK === 'true',
 });

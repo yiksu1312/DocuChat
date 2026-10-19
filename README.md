@@ -105,11 +105,17 @@ React / Ant Design connects to a loopback-only Express API. PDF.js extracts text
 
 **A matching quotation does not prove that every claim is supported.** Inspect the source when accuracy matters. Recent conversation is context, not evidence.
 
+### Measured evidence checks
+
+An optional post-generation check asks whether the quoted evidence supports each claim. With `EVIDENCE_CHECK=true`, the candidate is held until verification finishes; unsupported or uncertain results are withheld. This adds one model call for each otherwise valid answer. It does not retrieve more evidence or repair answers.
+
+In a paired evaluation of **27 text questions plus one parser boundary case**, content correctness stayed at **22/27**; average completion time rose from **1.34s to 2.29s**. The check is **off by default** because this run did not demonstrate an accuracy gain. See the [flow diagrams, failure analysis and reproducible results](EVIDENCE_EVALUATION.md), including bilingual and cross-page questions. Scores are assistant-reviewed, not independently human-validated.
+
 ## Privacy and data
 
 | Stays on your machine | Sent to OpenAI in real mode |
 | --- | --- |
-| Original PDFs; SQLite database; saved chats and indexes | Document chunks for embeddings; retrieval queries; questions, bounded conversation context, source names, and retrieved passages for answers |
+| Original PDFs; SQLite database; saved chats and indexes | Document chunks for embeddings; retrieval queries; questions, bounded conversation context, source names, and retrieved passages for answers; when evidence checks are enabled, the question, candidate answer and selected quotations |
 
 PDF bytes are parsed locally. Real mode is **not fully offline**. Mock mode makes no AI-provider calls.
 
@@ -131,6 +137,7 @@ Process environment variables override `backend/.env`. Blank optional values use
 | `MODEL_TIMEOUT_MS` | `60000` | Indexing / question deadline |
 | `MODEL_MAX_RETRIES` | `1` | Maximum SDK retries |
 | `MOCK_AI` | `false` | Explicit offline demo |
+| `EVIDENCE_CHECK` | `false` | Experimental evidence support gate in real mode; buffers answers and adds API cost |
 
 If you change `PORT`, set `BACKEND_PORT` to the same value when starting the frontend. Keep mock and real data separate. Changing embedding or split settings requires explicit reindexing and may incur API charges.
 
@@ -142,6 +149,7 @@ npm run check            # JavaScript syntax checks
 npm run build            # Production frontend build
 npm run test:browser     # Browser workflows and bilingual UI
 npm run eval:offline     # Deterministic retrieval and pipeline checks
+npm run eval:evidence:offline # Validate the 28-case paired evaluation harness
 ```
 
 Local browser tests use Microsoft Edge by default. For bundled Chromium, run `npx playwright install chromium` and set `CI=1` for the test command. GitHub Actions uses Chromium.
@@ -167,7 +175,7 @@ docs/        Screenshots and release manifest
 
 ## Documentation
 
-[API](API.md) · [Storage & backup](STORAGE.md) · [Design decisions](DESIGN.md) · [Five-minute walkthrough](ACCEPTANCE.md) · [Contributing](CONTRIBUTING.md) · [Security](SECURITY.md)
+[Evidence evaluation](EVIDENCE_EVALUATION.md) · [API](API.md) · [Storage & backup](STORAGE.md) · [Design decisions](DESIGN.md) · [Five-minute walkthrough](ACCEPTANCE.md) · [Contributing](CONTRIBUTING.md) · [Security](SECURITY.md)
 
 ## License
 

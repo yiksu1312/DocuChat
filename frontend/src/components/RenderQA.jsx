@@ -18,7 +18,7 @@ export default function RenderQA({ conversation, busy, onRetry, onSources }) {
       {item.status === 'stopped' && <Tag>{t('stopped')}</Tag>}
       {item.status === 'interrupted' && <Tag color="orange">{t('interrupted')}</Tag>}
       {item.status === 'error' && <p role="alert" className="error-text">{errorText(item.error)}</p>}
-      {item.status === 'done' && <div className="answer-actions"><Tag color={item.supported ? 'blue' : 'orange'}>{item.supported ? t('cited') : t('insufficient')}</Tag>
+      {item.status === 'done' && <div className="answer-actions"><Tag color={item.supported ? 'blue' : 'orange'}>{['passed','rejected','unavailable'].includes(item.evidenceCheck?.status) ? t('evidence.'+item.evidenceCheck.status) : item.supported ? t('cited') : t('insufficient')}</Tag>
         <Button size="small" onClick={() => onSources(item)}>{t('viewSources')}</Button></div>}
       {['error', 'stopped', 'done', 'interrupted'].includes(item.status) && <Button size="small" disabled={busy} onClick={() => onRetry(item.question)}>{t('retryQuestion')}</Button>}
     </div>

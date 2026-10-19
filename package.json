@@ -23,7 +23,9 @@
     "test:browser:real": "node scripts/browser-real.js",
     "eval:offline": "node scripts/evaluate.js --offline",
     "fixtures:eval": "node scripts/eval-fixtures.js",
-    "backup": "node scripts/backup-data.js"
+    "backup": "node scripts/backup-data.js",
+    "eval:evidence": "node scripts/evaluate-evidence.js",
+    "eval:evidence:offline": "node scripts/evaluate-evidence.js --offline"
   },
   "devDependencies": {
     "@playwright/test": "1.55.1",

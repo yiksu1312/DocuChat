@@ -1,3 +1,5 @@
 * text=auto
 *.pdf binary
 *.png binary
+# Keep archived run bytes stable so review SHA-256 checks work on every platform.
+docs/evaluation/*.json text eol=lf

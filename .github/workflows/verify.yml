@@ -25,5 +25,6 @@ jobs:
       - run: npx playwright install --with-deps chromium
       - run: npm run test:browser
       - run: npm run eval:offline
+      - run: npm run eval:evidence:offline
       - run: npm audit --audit-level=high
       - run: node scripts/publication-audit.js
