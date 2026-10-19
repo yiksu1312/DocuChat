@@ -1,0 +1,157 @@
+{
+  "date": "2026-10-19T01:38:48.736Z",
+  "reviewer": "Codex assistant review; not independent human assessment; not blinded",
+  "before": {
+    "contentCorrect": {
+      "passed": 23,
+      "total": 27
+    },
+    "taskPass": {
+      "passed": 22,
+      "total": 27
+    },
+    "allCasesTaskPass": {
+      "passed": 23,
+      "total": 28
+    },
+    "citationSupport": {
+      "passed": 17,
+      "total": 20
+    },
+    "answered": 20,
+    "noAnswerCorrect": {
+      "passed": 7,
+      "total": 8
+    },
+    "answerableRefusals": {
+      "passed": 0,
+      "total": 19
+    },
+    "latency": {
+      "meanMs": 1377.111111111111,
+      "medianMs": 1313,
+      "p95Ms": 1651
+    },
+    "questionCostUsd": 0.009146100000000002,
+    "retrievedEvidenceAnchors": {
+      "passed": 25,
+      "total": 27
+    },
+    "calls": {
+      "embedding": 27,
+      "generation": 27
+    },
+    "tokens": {
+      "embeddingTokens": 445,
+      "inputTokens": 15731,
+      "cachedInputTokens": 0,
+      "outputTokens": 1778
+    },
+    "failures": {
+      "parsing": [],
+      "retrieval": [
+        "E11",
+        "E12"
+      ],
+      "generation": [
+        "E05",
+        "E09",
+        "E11",
+        "E12",
+        "E23"
+      ],
+      "citation": [
+        "E05",
+        "E11",
+        "E23"
+      ]
+    }
+  },
+  "after": {
+    "contentCorrect": {
+      "passed": 25,
+      "total": 27
+    },
+    "taskPass": {
+      "passed": 24,
+      "total": 27
+    },
+    "allCasesTaskPass": {
+      "passed": 25,
+      "total": 28
+    },
+    "citationSupport": {
+      "passed": 18,
+      "total": 20
+    },
+    "answered": 20,
+    "noAnswerCorrect": {
+      "passed": 7,
+      "total": 8
+    },
+    "answerableRefusals": {
+      "passed": 0,
+      "total": 19
+    },
+    "latency": {
+      "meanMs": 1358.2592592592594,
+      "medianMs": 1307,
+      "p95Ms": 1881
+    },
+    "questionCostUsd": 0.0090129,
+    "retrievedEvidenceAnchors": {
+      "passed": 27,
+      "total": 27
+    },
+    "calls": {
+      "embedding": 27,
+      "generation": 27
+    },
+    "tokens": {
+      "embeddingTokens": 445,
+      "inputTokens": 16054,
+      "cachedInputTokens": 0,
+      "outputTokens": 1614
+    },
+    "failures": {
+      "parsing": [],
+      "retrieval": [],
+      "generation": [
+        "E05",
+        "E09",
+        "E23"
+      ],
+      "citation": [
+        "E05",
+        "E23"
+      ]
+    }
+  },
+  "sharedIndexingUsd": 0.00001694,
+  "actualEstimatedTotalUsd": 0.01817594,
+  "parsedEvidenceAnchors": {
+    "passed": 27,
+    "total": 27
+  },
+  "changedContexts": [
+    "E08",
+    "E11",
+    "E12",
+    "E13",
+    "E14",
+    "E26"
+  ],
+  "matchingQueryVectors": {
+    "passed": 20,
+    "total": 27
+  },
+  "originalHitsPreserved": {
+    "passed": 27,
+    "total": 27
+  },
+  "gains": [
+    "E11",
+    "E12"
+  ],
+  "regressions": []
+}

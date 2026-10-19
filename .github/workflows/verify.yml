@@ -26,5 +26,6 @@ jobs:
       - run: npm run test:browser
       - run: npm run eval:offline
       - run: npm run eval:evidence:offline
+      - run: npm run eval:retrieval:offline
       - run: npm audit --audit-level=high
       - run: node scripts/publication-audit.js

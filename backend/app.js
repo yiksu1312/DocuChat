@@ -72,6 +72,7 @@ export function createApp(config, provider = config.mock ? createMockProvider() 
     documents: store.documents().filter(d => d.status === 'ready').length, storageVersion: 1,
     models: { chat: config.chatModel, embedding: config.embeddingModel },
     evidenceCheck: Boolean(config.evidenceCheck),
+    retrievalMode: config.retrievalMode || 'adjacent',
   }));
   app.get('/api/documents', (_req, res) => res.json({ documents: store.documents() }));
   app.get('/api/documents/:id/file', route(async (req, res) => {
@@ -206,7 +207,7 @@ export function createApp(config, provider = config.mock ? createMockProvider() 
           .run(JSON.stringify({code:error.code,message:error.message}),Date.now(),docId);
         throw error;
       }
-      retrieved = retrieveMany(indexes, queryVector, config.embeddingModel);
+      retrieved = retrieveMany(indexes, queryVector, config.embeddingModel, config.retrievalMode || 'adjacent');
       store.validateSources(retrieved, scope);
       retrievalMs = Math.round(performance.now() - start);
       ctx.emit('retrieval', { retrieved, documentIds: scope, sessionId });

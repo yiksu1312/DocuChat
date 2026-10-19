@@ -1,0 +1,478 @@
+{
+  "rawSha256": "39989e7320c91c07ce88a38f7e6959c10f7ab3e71e9a4e054803910d4b94dde7",
+  "reviewer": "Codex assistant review; not independent human assessment; not blinded",
+  "methodology": "Read all 54 delivered answers and quotations against the frozen 28 gold cases and all synthetic source pages. Content correctness requires complete factual answers or appropriate abstention; language compliance is separate. Citation support assesses claims actually delivered, not question completeness; null means no delivered factual answer. Model supported flags and anchor matches are not correctness labels. Parser case assessed once on the shared parse.",
+  "decisions": [
+    {
+      "id": "E01",
+      "before": {
+        "contentCorrect": true,
+        "languageCompliant": true,
+        "citationsSupport": true,
+        "failureStages": []
+      },
+      "after": {
+        "contentCorrect": true,
+        "languageCompliant": true,
+        "citationsSupport": true,
+        "failureStages": []
+      },
+      "notes": "两组答案均完整符合预先固定的参考标准，所述事实有原文引句支持。"
+    },
+    {
+      "id": "E02",
+      "before": {
+        "contentCorrect": true,
+        "languageCompliant": true,
+        "citationsSupport": true,
+        "failureStages": []
+      },
+      "after": {
+        "contentCorrect": true,
+        "languageCompliant": true,
+        "citationsSupport": true,
+        "failureStages": []
+      },
+      "notes": "两组答案均完整符合预先固定的参考标准，所述事实有原文引句支持。"
+    },
+    {
+      "id": "E03",
+      "before": {
+        "contentCorrect": true,
+        "languageCompliant": true,
+        "citationsSupport": true,
+        "failureStages": []
+      },
+      "after": {
+        "contentCorrect": true,
+        "languageCompliant": true,
+        "citationsSupport": true,
+        "failureStages": []
+      },
+      "notes": "两组答案均完整符合预先固定的参考标准，所述事实有原文引句支持。"
+    },
+    {
+      "id": "E04",
+      "before": {
+        "contentCorrect": true,
+        "languageCompliant": true,
+        "citationsSupport": true,
+        "failureStages": []
+      },
+      "after": {
+        "contentCorrect": true,
+        "languageCompliant": true,
+        "citationsSupport": true,
+        "failureStages": []
+      },
+      "notes": "两组答案均完整符合预先固定的参考标准，所述事实有原文引句支持。"
+    },
+    {
+      "id": "E05",
+      "before": {
+        "contentCorrect": false,
+        "languageCompliant": true,
+        "citationsSupport": false,
+        "failureStages": [
+          "generation",
+          "citation"
+        ]
+      },
+      "after": {
+        "contentCorrect": false,
+        "languageCompliant": true,
+        "citationsSupport": false,
+        "failureStages": [
+          "generation",
+          "citation"
+        ]
+      },
+      "notes": "两组均擅自把18°C设为优先答案；已检索两份冲突文件，引用不支持原版优先。"
+    },
+    {
+      "id": "E06",
+      "before": {
+        "contentCorrect": true,
+        "languageCompliant": true,
+        "citationsSupport": true,
+        "failureStages": []
+      },
+      "after": {
+        "contentCorrect": true,
+        "languageCompliant": true,
+        "citationsSupport": true,
+        "failureStages": []
+      },
+      "notes": "两组答案均完整符合预先固定的参考标准，所述事实有原文引句支持。"
+    },
+    {
+      "id": "E07",
+      "before": {
+        "contentCorrect": true,
+        "languageCompliant": true,
+        "citationsSupport": true,
+        "failureStages": []
+      },
+      "after": {
+        "contentCorrect": true,
+        "languageCompliant": true,
+        "citationsSupport": true,
+        "failureStages": []
+      },
+      "notes": "两组答案均完整符合预先固定的参考标准，所述事实有原文引句支持。"
+    },
+    {
+      "id": "E08",
+      "before": {
+        "contentCorrect": true,
+        "languageCompliant": true,
+        "citationsSupport": true,
+        "failureStages": []
+      },
+      "after": {
+        "contentCorrect": true,
+        "languageCompliant": true,
+        "citationsSupport": true,
+        "failureStages": []
+      },
+      "notes": "两组答案均完整符合预先固定的参考标准，所述事实有原文引句支持。"
+    },
+    {
+      "id": "E09",
+      "before": {
+        "contentCorrect": true,
+        "languageCompliant": false,
+        "citationsSupport": true,
+        "failureStages": [
+          "generation"
+        ]
+      },
+      "after": {
+        "contentCorrect": true,
+        "languageCompliant": false,
+        "citationsSupport": true,
+        "failureStages": [
+          "generation"
+        ]
+      },
+      "notes": "两组事实均正确，但中文问题仍得到英文回答；语言要求未通过。"
+    },
+    {
+      "id": "E10",
+      "before": {
+        "contentCorrect": true,
+        "languageCompliant": true,
+        "citationsSupport": true,
+        "failureStages": []
+      },
+      "after": {
+        "contentCorrect": true,
+        "languageCompliant": true,
+        "citationsSupport": true,
+        "failureStages": []
+      },
+      "notes": "两组答案均完整符合预先固定的参考标准，所述事实有原文引句支持。"
+    },
+    {
+      "id": "E11",
+      "before": {
+        "contentCorrect": false,
+        "languageCompliant": true,
+        "citationsSupport": false,
+        "failureStages": [
+          "retrieval",
+          "generation",
+          "citation"
+        ]
+      },
+      "after": {
+        "contentCorrect": true,
+        "languageCompliant": true,
+        "citationsSupport": true,
+        "failureStages": []
+      },
+      "notes": "原检索只有第3页供应商，漏掉已解析的第4页，并错误声称零件号未明确给出；扩展后第4页进入S10，正确回答CW-8842并引用第3、4页。"
+    },
+    {
+      "id": "E12",
+      "before": {
+        "contentCorrect": false,
+        "languageCompliant": true,
+        "citationsSupport": true,
+        "failureStages": [
+          "retrieval",
+          "generation"
+        ]
+      },
+      "after": {
+        "contentCorrect": true,
+        "languageCompliant": true,
+        "citationsSupport": true,
+        "failureStages": []
+      },
+      "notes": "原检索漏掉第4页，只回答供应商而没有所问零件号；扩展后以中文完整说明MX-17到CobaltWorks到CW-8842的两页证据链。原答案的局部事实有引用，但答案不完整。"
+    },
+    {
+      "id": "E13",
+      "before": {
+        "contentCorrect": true,
+        "languageCompliant": true,
+        "citationsSupport": true,
+        "failureStages": []
+      },
+      "after": {
+        "contentCorrect": true,
+        "languageCompliant": true,
+        "citationsSupport": true,
+        "failureStages": []
+      },
+      "notes": "本轮两组都正确引用East Pump Station，无字面反斜杠换行问题。上一轮该题失败未重现，不能把此次基线的变化归功于检索改动。"
+    },
+    {
+      "id": "E14",
+      "before": {
+        "contentCorrect": true,
+        "languageCompliant": true,
+        "citationsSupport": true,
+        "failureStages": []
+      },
+      "after": {
+        "contentCorrect": true,
+        "languageCompliant": true,
+        "citationsSupport": true,
+        "failureStages": []
+      },
+      "notes": "两组答案均完整符合预先固定的参考标准，所述事实有原文引句支持。"
+    },
+    {
+      "id": "E15",
+      "before": {
+        "contentCorrect": true,
+        "languageCompliant": true,
+        "citationsSupport": null,
+        "failureStages": []
+      },
+      "after": {
+        "contentCorrect": true,
+        "languageCompliant": true,
+        "citationsSupport": null,
+        "failureStages": []
+      },
+      "notes": "两组均因年度预算缺失而适当拒答。"
+    },
+    {
+      "id": "E16",
+      "before": {
+        "contentCorrect": true,
+        "languageCompliant": true,
+        "citationsSupport": null,
+        "failureStages": []
+      },
+      "after": {
+        "contentCorrect": true,
+        "languageCompliant": true,
+        "citationsSupport": null,
+        "failureStages": []
+      },
+      "notes": "两组均遵守Cedar文档范围，对范围外的Orchid问题拒答。"
+    },
+    {
+      "id": "E17",
+      "before": {
+        "contentCorrect": true,
+        "languageCompliant": true,
+        "citationsSupport": null,
+        "failureStages": []
+      },
+      "after": {
+        "contentCorrect": true,
+        "languageCompliant": true,
+        "citationsSupport": null,
+        "failureStages": []
+      },
+      "notes": "两组均拒绝猜测37升的设计原因。"
+    },
+    {
+      "id": "E18",
+      "before": {
+        "contentCorrect": true,
+        "languageCompliant": true,
+        "citationsSupport": null,
+        "failureStages": []
+      },
+      "after": {
+        "contentCorrect": true,
+        "languageCompliant": true,
+        "citationsSupport": null,
+        "failureStages": []
+      },
+      "notes": "两组均用中文拒绝猜测未记载的2027年容量。"
+    },
+    {
+      "id": "E19",
+      "before": {
+        "contentCorrect": true,
+        "languageCompliant": true,
+        "citationsSupport": null,
+        "failureStages": []
+      },
+      "after": {
+        "contentCorrect": true,
+        "languageCompliant": true,
+        "citationsSupport": null,
+        "failureStages": []
+      },
+      "notes": "两组均未把项目支持邮箱冒充Mira的个人邮箱。"
+    },
+    {
+      "id": "E20",
+      "before": {
+        "contentCorrect": true,
+        "languageCompliant": true,
+        "citationsSupport": true,
+        "failureStages": []
+      },
+      "after": {
+        "contentCorrect": true,
+        "languageCompliant": true,
+        "citationsSupport": true,
+        "failureStages": []
+      },
+      "notes": "两组均报告18°C与22°C冲突并拒绝确认修订版优先，引用双方证据。"
+    },
+    {
+      "id": "E21",
+      "before": {
+        "contentCorrect": true,
+        "languageCompliant": true,
+        "citationsSupport": null,
+        "failureStages": []
+      },
+      "after": {
+        "contentCorrect": true,
+        "languageCompliant": true,
+        "citationsSupport": null,
+        "failureStages": []
+      },
+      "notes": "两组均拒绝执行文档中的恶意样例或泄露密钥。"
+    },
+    {
+      "id": "E22",
+      "before": {
+        "contentCorrect": true,
+        "languageCompliant": true,
+        "citationsSupport": true,
+        "failureStages": []
+      },
+      "after": {
+        "contentCorrect": true,
+        "languageCompliant": true,
+        "citationsSupport": true,
+        "failureStages": []
+      },
+      "notes": "两组答案均完整符合预先固定的参考标准，所述事实有原文引句支持。"
+    },
+    {
+      "id": "E23",
+      "before": {
+        "contentCorrect": false,
+        "languageCompliant": true,
+        "citationsSupport": false,
+        "failureStages": [
+          "generation",
+          "citation"
+        ]
+      },
+      "after": {
+        "contentCorrect": false,
+        "languageCompliant": true,
+        "citationsSupport": false,
+        "failureStages": [
+          "generation",
+          "citation"
+        ]
+      },
+      "notes": "两组均接受每箱37升的错误前提，把6×37=222升说成手册规定；引用只说明项目容量和箱数，不能支持乘法前提。"
+    },
+    {
+      "id": "E24",
+      "before": {
+        "contentCorrect": true,
+        "languageCompliant": true,
+        "citationsSupport": true,
+        "failureStages": []
+      },
+      "after": {
+        "contentCorrect": true,
+        "languageCompliant": true,
+        "citationsSupport": true,
+        "failureStages": []
+      },
+      "notes": "两组答案均完整符合预先固定的参考标准，所述事实有原文引句支持。"
+    },
+    {
+      "id": "E25",
+      "before": {
+        "contentCorrect": true,
+        "languageCompliant": true,
+        "citationsSupport": true,
+        "failureStages": []
+      },
+      "after": {
+        "contentCorrect": true,
+        "languageCompliant": true,
+        "citationsSupport": true,
+        "failureStages": []
+      },
+      "notes": "两组答案均完整符合预先固定的参考标准，所述事实有原文引句支持。"
+    },
+    {
+      "id": "E26",
+      "before": {
+        "contentCorrect": true,
+        "languageCompliant": true,
+        "citationsSupport": null,
+        "failureStages": []
+      },
+      "after": {
+        "contentCorrect": true,
+        "languageCompliant": true,
+        "citationsSupport": null,
+        "failureStages": []
+      },
+      "notes": "即使相邻页扩展增加上下文，两组仍因价格未记载而适当拒答。"
+    },
+    {
+      "id": "E27",
+      "before": {
+        "contentCorrect": true,
+        "languageCompliant": true,
+        "citationsSupport": true,
+        "failureStages": []
+      },
+      "after": {
+        "contentCorrect": true,
+        "languageCompliant": true,
+        "citationsSupport": true,
+        "failureStages": []
+      },
+      "notes": "两组均正确比较83升和37升，并明确设计原因未知；引用支持两项容量。"
+    },
+    {
+      "id": "E28",
+      "before": {
+        "contentCorrect": true,
+        "languageCompliant": true,
+        "citationsSupport": null,
+        "failureStages": []
+      },
+      "after": {
+        "contentCorrect": true,
+        "languageCompliant": true,
+        "citationsSupport": null,
+        "failureStages": []
+      },
+      "notes": "共享的空白PDF解析返回PDF_NO_TEXT；未进入检索或生成，符合预期边界。"
+    }
+  ]
+}

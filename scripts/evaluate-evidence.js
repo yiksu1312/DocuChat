@@ -58,7 +58,8 @@ const provider={
     capture.audit=response.result;return response;
   },
 };
-const app=createApp({...config,dataDir,mock:offline,evidenceCheck:true,timeout:120000,retries:0},provider,()=>{});
+// Keep the previous experiment on its original retrieval baseline.
+const app=createApp({...config,dataDir,mock:offline,evidenceCheck:true,retrievalMode:'vector',timeout:120000,retries:0},provider,()=>{});
 const normalize=s=>s.replace(/\s+/g,' ').toLowerCase();
 const anchors=(evidence,chunks)=>evidence.map(e=>({...e,present:chunks.some(c=>c.documentId===ids[e.document]&&c.page===e.page&&normalize(c.text).includes(normalize(e.text)))}));
 async function save(){
